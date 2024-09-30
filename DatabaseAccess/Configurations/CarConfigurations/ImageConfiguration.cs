@@ -4,15 +4,15 @@ using DatabaseAccess.Entities.CarEntities;
 
 namespace DatabaseAccess.Configurations.CarConfigurations
 {
-    public class ImageConfiguration : IEntityTypeConfiguration<ImageEntity>
+    public class ImageConfiguration : IEntityTypeConfiguration<ImageInfoEntity>
     {
-        public void Configure(EntityTypeBuilder<ImageEntity> builder)
+        public void Configure(EntityTypeBuilder<ImageInfoEntity> builder)
         {
             builder.HasKey(i => i.Id);
 
             builder
                 .HasOne(i => i.Car)
-                .WithMany(c => c.Images);
+                .WithOne(c => c.Images).HasForeignKey<CarEntity>(c => c.ImageInfoId);
         }
     }
 }

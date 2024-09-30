@@ -16,6 +16,7 @@ namespace DatabaseAccess.Entities.CarEntities
         public Guid CategoryId {get; set;}
         public CategoryEntity? Category {get; set;}
 
-        public List<ImageEntity> Images {get;set;} = [];
+        public Guid ImageInfoId { get; set; }
+        public ImageInfoEntity? Images {get;set;}
     }
 }

@@ -11,7 +11,7 @@ namespace DatabaseAccess
 
         public DbSet<CarEntity> Cars {get;set;}
         public DbSet<CategoryEntity> Categories {get;set;}
-        public DbSet<ImageEntity> Images {get;set;}
+        public DbSet<ImageInfoEntity> Images {get;set;}
         public DbSet<ManufacturerEntity> Manufacturers {get;set;}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

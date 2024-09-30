@@ -19,9 +19,9 @@ namespace DatabaseAccess.Configurations.CarConfigurations
                 .WithMany(c => c.Cars);
 
             builder
-                .HasMany(c => c.Images)
+                .HasOne(c => c.Images)
                 .WithOne(i => i.Car)
-                .HasForeignKey(i => i.CarId);
+                .HasForeignKey<ImageInfoEntity>(i => i.CarId);
         }
     }
 }
