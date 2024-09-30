@@ -1,16 +1,19 @@
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import './App.css'
-import WeatherTable from './components/weatherTable'
+import Header from './components/Header'
 
 function App() {
     
 
-  return (
-    <>
-        <header className="App-header"></header>
-        <WeatherTable/>
-        <footer></footer>
-    </>
-  )
+      return (
+          <Router>
+              <Routes>
+                  <Route exact path="/" component={Home} />
+              </Routes>
+                  
+          </Router>
+      )
 }
 
 export default App
