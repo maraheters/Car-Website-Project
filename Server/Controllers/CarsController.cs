@@ -30,4 +30,11 @@ public class CarsController : Controller
         var createdEntity = await _carsService.CreateCar(postCarDto);
         return Created($"/api/cars/{createdEntity.Id}", createdEntity);  
     }
+    
+    [HttpDelete("{id:guid}")]
+    public async Task<ActionResult> DeleteMovie(Guid id)
+    {
+        await _carsService.DeleteCar(id);
+        return new NoContentResult();
+    }
 }

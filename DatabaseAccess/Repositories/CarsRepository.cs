@@ -77,6 +77,10 @@ public class CarsRepository
     //     return await query.ToListAsync();
     // }
 
-    
-    
+
+    public async Task Delete(CarEntity car)
+    {
+        _dbContext.Remove(car);
+        await _dbContext.SaveChangesAsync();
+    }
 }
