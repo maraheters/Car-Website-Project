@@ -1,0 +1,27 @@
+$accent-color: #dc3545;
+
+.card {
+  display: flex; 
+  flex-direction: row; 
+  align-items: center; 
+  padding: 1rem;   
+  border-radius: 8px; 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+
+  figure {
+    margin: 0; 
+    width: 300px; 
+    height: auto; 
+  }
+
+  img {
+    width: 100%; 
+    height: auto; 
+  }
+
+  .descriptionContainer {
+    color: $accent-color;
+    margin-left: 1rem; 
+    flex: 1; 
+  }
+}
