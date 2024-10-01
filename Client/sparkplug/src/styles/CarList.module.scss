@@ -1,0 +1,52 @@
+$accent-color: #dc3545;
+
+.list {
+  list-style-type: none;
+  display: grid; 
+  //border: 1px solid red;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-rows: auto auto auto;
+  gap: 15px;
+  justify-content: center;
+}
+
+.card {
+  width: 100%; 
+  padding: 0; 
+  margin-bottom: 20px;
+  height: 100%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+
+  figure {
+    margin: 0; 
+    width: 100%; 
+    height: auto; 
+  }
+
+  img {
+    width: 100%; 
+    height: auto; 
+  }
+
+  .descriptionContainer {
+    color: $accent-color;
+    margin: 0; 
+    flex: 1; 
+    padding-left: 20px;
+    
+    h2 {
+      font-weight: bold;
+    }
+    
+    p {
+      padding: 0;
+      margin: 0;
+      font-weight: lighter;
+    }
+  }
+  
+  &:hover {
+    scale: 101%;
+    transition: 0.25s ease-in-out;
+  }
+}
