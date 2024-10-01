@@ -1,7 +1,7 @@
 import Header from "../components/Header";
 import CarList from "../components/CarList";
 
-function Home(props) {
+function Home() {
     return (
         <>
             <Header/>

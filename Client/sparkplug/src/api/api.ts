@@ -13,6 +13,9 @@ export type Car = {
 
 const fetchCars = async (): Promise<Car[]> => {
     const response = await fetch(`${API_URL}/cars`);
+    if (!response.ok) {
+        throw new Error(`HTTP error: ${response.statusText}`);
+    }
     const data = await response.json();
     return data;
 }

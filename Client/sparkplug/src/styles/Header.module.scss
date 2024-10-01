@@ -10,13 +10,14 @@ $background-color: #e1e1e1;
 @mixin clickable-text {
     font-weight: bold;
     color: $accent-color;
+    font-size: 12pt;
     &:hover {
         transition: .25s ease-in;
         scale: 1.2;
     }
 }
 
-.header {
+.navBar {
     @include flex-row;
     border-bottom: 1px solid $accent-color;
     background-color: $background-color;
@@ -26,6 +27,7 @@ $background-color: #e1e1e1;
     right: 0;
     align-items: center; 
     justify-content: space-between;
+    z-index: 1000;
     
     button {
         @include clickable-text;
@@ -51,7 +53,7 @@ $background-color: #e1e1e1;
     font-family: "Leckerli One", cursive;
     font-weight: 400;
     font-style: normal;
-    font-size: 2rem;
+    font-size: 16pt;
     color: $accent-color;
     padding-left: 3%;
 }
