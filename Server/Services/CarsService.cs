@@ -35,19 +35,19 @@ public class CarsService : ICarsService
         return _mapper.Map<GetCarDto>(carEntity);
     }
 
-    public async Task<GetCarDto> CreateCar(PostCarDto postCarDto)
+    public async Task<GetCarDto> Create(PostCarDto postCarDto)
     {
         var carEntity = _mapper.Map<CarEntity>(postCarDto);
         await _repository.Create(carEntity, postCarDto.Manufacturer, postCarDto.Category);
         return _mapper.Map<GetCarDto>(carEntity);
     }
 
-    public Task<GetCarDto> UpdateCar(Guid carId, GetCarDto getCar)
+    public Task<GetCarDto> Update(Guid carId, GetCarDto getCar)
     {
         throw new NotImplementedException();
     }
 
-    public async Task DeleteCar(Guid carId)
+    public async Task Delete(Guid carId)
     {
         var car = await _repository.GetById(carId);
         if (car == null)

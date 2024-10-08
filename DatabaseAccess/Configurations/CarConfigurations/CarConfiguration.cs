@@ -21,7 +21,8 @@ namespace DatabaseAccess.Configurations.CarConfigurations
             builder
                 .HasOne(c => c.Images)
                 .WithOne(i => i.Car)
-                .HasForeignKey<ImageInfoEntity>(i => i.CarId);
+                .HasForeignKey<ImageInfoEntity>(i => i.CarId)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

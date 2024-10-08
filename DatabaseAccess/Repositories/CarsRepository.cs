@@ -34,12 +34,20 @@ public class CarsRepository
 
     public async Task Create(CarEntity car, string manufacturerName, string categoryName)
     {
-        var id = Guid.NewGuid();
-        
+        car.Id = Guid.NewGuid();
+
+        string Capitalize(string s) => 
+            string.IsNullOrEmpty(s) ? string.Empty : char.ToUpper(s[0]) + s.Substring(1);
+
         var manufacturer = _dbContext.Manufacturers.FirstOrDefault(m => m.Name == manufacturerName);
         if (manufacturer == null)
         {
-            manufacturer = new ManufacturerEntity { Id = Guid.NewGuid(), Cars = [], Name = manufacturerName };
+            manufacturer = new ManufacturerEntity 
+            { 
+                Id = Guid.NewGuid(), 
+                Cars = [], 
+                Name = Capitalize(manufacturerName) 
+            };
             _dbContext.Manufacturers.Add(manufacturer);
         }
         manufacturer.Cars.Add(car);
@@ -47,7 +55,12 @@ public class CarsRepository
         var category = _dbContext.Categories.FirstOrDefault(c => c.Name == categoryName);
         if (category == null)
         {
-            category = new CategoryEntity { Id = Guid.NewGuid(), Cars = [], Name = categoryName };
+            category = new CategoryEntity
+            {
+                Id = Guid.NewGuid(), 
+                Cars = [], 
+                Name = Capitalize(categoryName)
+            };
             _dbContext.Categories.Add(category);
         }
         category.Cars.Add(car);
@@ -55,8 +68,8 @@ public class CarsRepository
         var images = car.Images;
         images.Id = Guid.NewGuid();
         images.Car = car;
-
-        car.Id = id;
+        images.CarId = car.Id;
+        
         car.Manufacturer = manufacturer;
         car.Category = category;
         car.Images = images;
@@ -64,19 +77,6 @@ public class CarsRepository
         await _dbContext.Cars.AddAsync(car);
         await _dbContext.SaveChangesAsync();
     }
-    
-    // public async Task<List<CarEntity>> GetByManufacturer(string manufacturer)
-    // {
-    //     var query = _dbContext.Cars.AsNoTracking();
-    //
-    //     if (!string.IsNullOrEmpty(manufacturer))
-    //     {
-    //         query = query.Where(c => c.Manufacturer.Name == manufacturer);
-    //     }
-    //     
-    //     return await query.ToListAsync();
-    // }
-
 
     public async Task Delete(CarEntity car)
     {

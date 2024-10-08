@@ -3,6 +3,7 @@ using System;
 using DatabaseAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DatabaseAccess.Migrations
 {
     [DbContext(typeof(CarDbContext))]
-    partial class CarDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241001182637_CascadeDelete")]
+    partial class CascadeDelete
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.8");
@@ -23,10 +26,13 @@ namespace DatabaseAccess.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid?>("CategoryId")
+                    b.Property<Guid>("CategoryId")
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid?>("ManufacturerId")
+                    b.Property<Guid>("ImageInfoId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("ManufacturerId")
                         .HasColumnType("TEXT");
 
                     b.Property<int>("Mileage")
@@ -46,6 +52,9 @@ namespace DatabaseAccess.Migrations
 
                     b.HasIndex("CategoryId");
 
+                    b.HasIndex("ImageInfoId")
+                        .IsUnique();
+
                     b.HasIndex("ManufacturerId");
 
                     b.ToTable("Cars");
@@ -63,7 +72,7 @@ namespace DatabaseAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories", (string)null);
+                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("DatabaseAccess.Entities.CarEntities.ImageInfoEntity", b =>
@@ -81,10 +90,7 @@ namespace DatabaseAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CarId")
-                        .IsUnique();
-
-                    b.ToTable("Images", (string)null);
+                    b.ToTable("Images");
                 });
 
             modelBuilder.Entity("DatabaseAccess.Entities.CarEntities.ManufacturerEntity", b =>
@@ -99,43 +105,44 @@ namespace DatabaseAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Manufacturers", (string)null);
+                    b.ToTable("Manufacturers");
                 });
 
             modelBuilder.Entity("DatabaseAccess.Entities.CarEntities.CarEntity", b =>
                 {
                     b.HasOne("DatabaseAccess.Entities.CarEntities.CategoryEntity", "Category")
                         .WithMany("Cars")
-                        .HasForeignKey("CategoryId");
-
-                    b.HasOne("DatabaseAccess.Entities.CarEntities.ManufacturerEntity", "Manufacturer")
-                        .WithMany("Cars")
-                        .HasForeignKey("ManufacturerId");
-
-                    b.Navigation("Category");
-
-                    b.Navigation("Manufacturer");
-                });
-
-            modelBuilder.Entity("DatabaseAccess.Entities.CarEntities.ImageInfoEntity", b =>
-                {
-                    b.HasOne("DatabaseAccess.Entities.CarEntities.CarEntity", "Car")
-                        .WithOne("Images")
-                        .HasForeignKey("DatabaseAccess.Entities.CarEntities.ImageInfoEntity", "CarId")
+                        .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Car");
-                });
+                    b.HasOne("DatabaseAccess.Entities.CarEntities.ImageInfoEntity", "Images")
+                        .WithOne("Car")
+                        .HasForeignKey("DatabaseAccess.Entities.CarEntities.CarEntity", "ImageInfoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-            modelBuilder.Entity("DatabaseAccess.Entities.CarEntities.CarEntity", b =>
-                {
+                    b.HasOne("DatabaseAccess.Entities.CarEntities.ManufacturerEntity", "Manufacturer")
+                        .WithMany("Cars")
+                        .HasForeignKey("ManufacturerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
+
                     b.Navigation("Images");
+
+                    b.Navigation("Manufacturer");
                 });
 
             modelBuilder.Entity("DatabaseAccess.Entities.CarEntities.CategoryEntity", b =>
                 {
                     b.Navigation("Cars");
+                });
+
+            modelBuilder.Entity("DatabaseAccess.Entities.CarEntities.ImageInfoEntity", b =>
+                {
+                    b.Navigation("Car");
                 });
 
             modelBuilder.Entity("DatabaseAccess.Entities.CarEntities.ManufacturerEntity", b =>

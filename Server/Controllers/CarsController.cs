@@ -24,17 +24,30 @@ public class CarsController : Controller
         return Ok(carDtos);
     }
 
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetById(Guid id)
+    {
+        var carDto = await _carsService.GetById(id);
+        return Ok(carDto);
+    }
+
     [HttpPost]
     public async Task<IActionResult> Create([FromBody] PostCarDto postCarDto)
     {
-        var createdEntity = await _carsService.CreateCar(postCarDto);
+        var createdEntity = await _carsService.Create(postCarDto);
         return Created($"/api/cars/{createdEntity.Id}", createdEntity);  
     }
+
+    // [HttpPut]
+    // public async Task<IActionResult> Update([FromHeader] Guid id, [FromBody] UpdateCarDto updateCarDto)
+    // {   
+    //     
+    // }
     
     [HttpDelete("{id:guid}")]
-    public async Task<ActionResult> DeleteMovie(Guid id)
+    public async Task<ActionResult> Delete(Guid id)
     {
-        await _carsService.DeleteCar(id);
+        await _carsService.Delete(id);
         return new NoContentResult();
     }
 }

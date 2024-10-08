@@ -9,13 +9,7 @@ namespace DatabaseAccess.Configurations.CarConfigurations
         public void Configure(EntityTypeBuilder<CategoryEntity> builder)
         {
             builder.HasKey(c => c.Id);
-
-            builder
-                .HasMany(c => c.Cars)
-                .WithOne(c => c.Category)
-                .HasForeignKey(c => c.CategoryId);
-
-            
+            builder.ToTable("Categories");
         }
     }
 }

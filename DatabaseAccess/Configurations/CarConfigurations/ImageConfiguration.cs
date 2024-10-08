@@ -10,9 +10,7 @@ namespace DatabaseAccess.Configurations.CarConfigurations
         {
             builder.HasKey(i => i.Id);
 
-            builder
-                .HasOne(i => i.Car)
-                .WithOne(c => c.Images).HasForeignKey<CarEntity>(c => c.ImageInfoId);
+            builder.ToTable("Images");
         }
     }
 }
