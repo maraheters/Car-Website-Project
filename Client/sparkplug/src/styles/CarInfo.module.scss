@@ -1,0 +1,48 @@
+$background-color-darker: #e3e3e3;
+
+.carInfo {
+    // border: 1px solid black;
+
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+    max-width: 100%;
+}
+
+.galleryAndQuickInfo {
+    background-color: $background-color-darker;
+    padding: 20px;
+    border-radius: 15px;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: auto auto;
+    min-width: 60%;
+    max-width: 1600px;
+    gap: 40px;
+    
+
+    .headings {
+
+        h1 {
+            font-size: 32pt;
+        }
+        
+        h1, h2 {
+            margin: 0;
+            font-size: 24pt;
+        }
+
+        h2 {
+            font-weight: lighter;
+        }
+
+        margin-bottom: 32px;
+    }
+
+    h3 {
+        font-weight: lighter;
+        font-size: 16pt;
+        margin: 5px;
+    }
+
+}
