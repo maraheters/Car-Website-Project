@@ -9,19 +9,17 @@ type CarCardProps = {
 function CarCard({car}: CarCardProps) {
     const {year, images, manufacturer, model, price, mileage} = car;
     
-    let coverImage: string;
-    if (images.length == 0)
-        coverImage = "../../public/car-svgrepo-com.svg";
-    else 
-        coverImage = images[0];
+    const coverImage: string = (images.length == 0) 
+        ? "../../public/car-svgrepo-com.svg"
+        : images[0];
     
     return (
         <div className={styles.card}>
             <figure><img src={coverImage} alt=""/></figure>
             <div className={styles.descriptionContainer}>
                 <h2 className={styles.heading}>{year} {manufacturer} {model}</h2>
-                <p>Цена: {formatPrice(price)}</p>
-                <p>Пробег: {formatMileage(mileage)} км</p>
+                <p>{formatPrice(price)}</p>
+                <p>{formatMileage(mileage)} км</p>
             </div>
         </div>
     );
