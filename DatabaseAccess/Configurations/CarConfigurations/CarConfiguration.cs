@@ -23,6 +23,12 @@ namespace DatabaseAccess.Configurations.CarConfigurations
                 .WithOne(i => i.Car)
                 .HasForeignKey<ImageInfoEntity>(i => i.CarId)
                 .OnDelete(DeleteBehavior.Cascade);
+            
+            builder
+                .HasOne(c => c.Engine)
+                .WithOne(e => e.Car)
+                .HasForeignKey<EngineEntity>(e => e.CarId)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

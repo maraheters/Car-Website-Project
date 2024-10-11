@@ -19,6 +19,7 @@ public class CarsRepository
             .Include(c => c.Manufacturer)
             .Include(c => c.Category)
             .Include(c => c.Images)
+            .Include(c => c.Engine)
             .ToListAsync();
     }
 
@@ -29,6 +30,7 @@ public class CarsRepository
             .Include(c => c.Manufacturer)
             .Include(c => c.Category)
             .Include(c => c.Images)
+            .Include(c => c.Engine)
             .FirstOrDefaultAsync(c => c.Id == id);
     }
 
@@ -66,13 +68,14 @@ public class CarsRepository
         category.Cars.Add(car);
 
         var images = car.Images;
-        images.Id = Guid.NewGuid();
-        images.Car = car;
+        var engine = car.Engine;
         images.CarId = car.Id;
+        images.Car = car;
+        engine.CarId = car.Id;
+        engine.Car = car;
         
         car.Manufacturer = manufacturer;
         car.Category = category;
-        car.Images = images;
         
         await _dbContext.Cars.AddAsync(car);
         await _dbContext.SaveChangesAsync();
