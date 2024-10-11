@@ -24,9 +24,7 @@ public class MappingProfile : Profile
                 opt.MapFrom(src => new CategoryEntity { Name = src.Category }))            
             .ForMember(dest => dest.Images, opt =>
                 opt.MapFrom(src => new ImageInfoEntity { Urls = src.Images }));
-
-        CreateMap<PostEngineDto, EngineEntity>();
-        CreateMap<EngineEntity, GetEngineDto>();
+            
 
     }
 }

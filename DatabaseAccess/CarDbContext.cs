@@ -13,7 +13,6 @@ namespace DatabaseAccess
         public DbSet<CategoryEntity> Categories {get;set;}
         public DbSet<ImageInfoEntity> Images {get;set;}
         public DbSet<ManufacturerEntity> Manufacturers {get;set;}
-        public DbSet<EngineEntity> Engines {get;set;}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -21,7 +20,6 @@ namespace DatabaseAccess
             modelBuilder.ApplyConfiguration(new CategoryConfiguration());
             modelBuilder.ApplyConfiguration(new ImageConfiguration());
             modelBuilder.ApplyConfiguration(new ManufacturerConfiguration());
-            modelBuilder.ApplyConfiguration(new EngineConfiguration());
 
             base.OnModelCreating(modelBuilder);
         }

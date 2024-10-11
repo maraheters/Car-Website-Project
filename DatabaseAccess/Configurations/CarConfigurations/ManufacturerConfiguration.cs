@@ -10,7 +10,6 @@ namespace DatabaseAccess.Configurations.CarConfigurations
         public void Configure(EntityTypeBuilder<ManufacturerEntity> builder)
         {
             builder.HasKey(m => m.Id);
-            builder.HasIndex(m => m.Name).IsUnique();
             builder.ToTable("Manufacturers");
         }
     }

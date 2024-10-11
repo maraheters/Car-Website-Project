@@ -26,14 +26,6 @@ namespace DatabaseAccess.Migrations
                     b.Property<Guid?>("CategoryId")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Color")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
                     b.Property<Guid?>("ManufacturerId")
                         .HasColumnType("TEXT");
 
@@ -71,51 +63,7 @@ namespace DatabaseAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Name")
-                        .IsUnique();
-
                     b.ToTable("Categories", (string)null);
-                });
-
-            modelBuilder.Entity("DatabaseAccess.Entities.CarEntities.EngineEntity", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
-
-                    b.Property<Guid>("CarId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<decimal>("Displacement")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("FuelType")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Model")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Modifications")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("Power")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("Torque")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Type")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CarId")
-                        .IsUnique();
-
-                    b.ToTable("Engines", (string)null);
                 });
 
             modelBuilder.Entity("DatabaseAccess.Entities.CarEntities.ImageInfoEntity", b =>
@@ -151,9 +99,6 @@ namespace DatabaseAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Name")
-                        .IsUnique();
-
                     b.ToTable("Manufacturers", (string)null);
                 });
 
@@ -172,17 +117,6 @@ namespace DatabaseAccess.Migrations
                     b.Navigation("Manufacturer");
                 });
 
-            modelBuilder.Entity("DatabaseAccess.Entities.CarEntities.EngineEntity", b =>
-                {
-                    b.HasOne("DatabaseAccess.Entities.CarEntities.CarEntity", "Car")
-                        .WithOne("Engine")
-                        .HasForeignKey("DatabaseAccess.Entities.CarEntities.EngineEntity", "CarId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Car");
-                });
-
             modelBuilder.Entity("DatabaseAccess.Entities.CarEntities.ImageInfoEntity", b =>
                 {
                     b.HasOne("DatabaseAccess.Entities.CarEntities.CarEntity", "Car")
@@ -196,8 +130,6 @@ namespace DatabaseAccess.Migrations
 
             modelBuilder.Entity("DatabaseAccess.Entities.CarEntities.CarEntity", b =>
                 {
-                    b.Navigation("Engine");
-
                     b.Navigation("Images");
                 });
 

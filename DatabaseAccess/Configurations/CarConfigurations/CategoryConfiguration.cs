@@ -9,7 +9,6 @@ namespace DatabaseAccess.Configurations.CarConfigurations
         public void Configure(EntityTypeBuilder<CategoryEntity> builder)
         {
             builder.HasKey(c => c.Id);
-            builder.HasIndex(c => c.Name).IsUnique();
             builder.ToTable("Categories");
         }
     }
