@@ -2,8 +2,12 @@ function formatPrice(price: number): string {
     return `$${price.toLocaleString()}`;
 }
 
- function formatMileage(mileage: number): string {
-    return `${mileage.toLocaleString()}`;
+function formatMileageKm(mileage: number): string {
+    return `${mileage.toLocaleString()}km`;
 }
 
-export { formatPrice, formatMileage };
+function formatDisplacement(displacement: number): string {
+    return `${displacement.toFixed(1)}L`;
+}
+
+export { formatPrice, formatMileageKm, formatDisplacement };

@@ -27,13 +27,11 @@ function CarList() {
     }, []);
 
     const carList = cars.map(car => (
-        // <Link to={`/car/${car.id}`} style={{ textDecoration: "none" }} key={car.id}>
-            <li>
-                <CarCard
-                    car={car}
-                />
-            </li>
-        // </Link>
+        <li>
+            <CarCard
+                car={car}
+            />
+        </li>
     ));
 
     if (loading)
