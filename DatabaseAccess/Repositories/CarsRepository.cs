@@ -20,6 +20,7 @@ public class CarsRepository
             .Include(c => c.Category)
             .Include(c => c.Images)
             .Include(c => c.Engine)
+            .Include(c => c.Transmission)
             .ToListAsync();
     }
 
@@ -31,6 +32,7 @@ public class CarsRepository
             .Include(c => c.Category)
             .Include(c => c.Images)
             .Include(c => c.Engine)
+            .Include(c => c.Transmission)
             .FirstOrDefaultAsync(c => c.Id == id);
     }
 
@@ -38,41 +40,14 @@ public class CarsRepository
     {
         car.Id = Guid.NewGuid();
 
-        string Capitalize(string s) => 
-            string.IsNullOrEmpty(s) ? string.Empty : char.ToUpper(s[0]) + s.Substring(1);
+        var manufacturerTask = GetOrCreateManufacturer(manufacturerName);
+        var categoryTask = GetOrCreateCategory(categoryName);
 
-        var manufacturer = _dbContext.Manufacturers.FirstOrDefault(m => m.Name == manufacturerName);
-        if (manufacturer == null)
-        {
-            manufacturer = new ManufacturerEntity 
-            { 
-                Id = Guid.NewGuid(), 
-                Cars = [], 
-                Name = Capitalize(manufacturerName) 
-            };
-            _dbContext.Manufacturers.Add(manufacturer);
-        }
-        manufacturer.Cars.Add(car);
+        var manufacturer = await manufacturerTask;
+        var category = await categoryTask;
         
-        var category = _dbContext.Categories.FirstOrDefault(c => c.Name == categoryName);
-        if (category == null)
-        {
-            category = new CategoryEntity
-            {
-                Id = Guid.NewGuid(), 
-                Cars = [], 
-                Name = Capitalize(categoryName)
-            };
-            _dbContext.Categories.Add(category);
-        }
+        manufacturer.Cars.Add(car);
         category.Cars.Add(car);
-
-        var images = car.Images;
-        var engine = car.Engine;
-        images.CarId = car.Id;
-        images.Car = car;
-        engine.CarId = car.Id;
-        engine.Car = car;
         
         car.Manufacturer = manufacturer;
         car.Category = category;
@@ -81,9 +56,53 @@ public class CarsRepository
         await _dbContext.SaveChangesAsync();
     }
 
+    public async Task Update(CarEntity car)
+    {
+        throw new NotImplementedException();
+    }
+
     public async Task Delete(CarEntity car)
     {
         _dbContext.Remove(car);
         await _dbContext.SaveChangesAsync();
     }
+
+    private async Task<ManufacturerEntity> GetOrCreateManufacturer(string manufacturerName)
+    {
+        var manufacturerNameCapitalized = Capitalize(manufacturerName);
+        var manufacturer = await _dbContext.Manufacturers.FirstOrDefaultAsync(m => m.Name == manufacturerNameCapitalized);
+        if (manufacturer == null)
+        {
+            manufacturer = new ManufacturerEntity 
+            { 
+                Id = Guid.NewGuid(), 
+                Cars = [], 
+                Name = manufacturerNameCapitalized
+            };
+            await _dbContext.Manufacturers.AddAsync(manufacturer);
+        }
+
+        return manufacturer;
+    }
+
+    private async Task<CategoryEntity> GetOrCreateCategory(string categoryName)
+    {
+        var categoryNameCapitalized = Capitalize(categoryName);
+        var category = await _dbContext.Categories.FirstOrDefaultAsync(c => c.Name == categoryNameCapitalized);
+        if (category == null)
+        {
+            category = new CategoryEntity
+            {
+                Id = Guid.NewGuid(), 
+                Cars = [], 
+                Name = categoryNameCapitalized
+            };
+            await _dbContext.Categories.AddAsync(category);
+        }
+        
+        return category;
+    }
+    
+    private string Capitalize(string s) => 
+        string.IsNullOrEmpty(s) ? string.Empty : char.ToUpper(s[0]) + s.Substring(1);
 }

@@ -1,8 +1,9 @@
-namespace Server.Models.DTOs.GetDtos;
+using Server.Models.DTOs.PostDtos;
 
-public class GetCarDto
+namespace Server.Models.DTOs.UpdateDtos;
+
+public class UpdateCarDto
 {
-    public Guid Id { get; set; }
     public required string Model { get; set; }
     public decimal Price { get; set; }
     public int Mileage { get; set; }
@@ -14,7 +15,7 @@ public class GetCarDto
     public string? Category { get; set; }
     public List<string>? Images { get; set; }
     
-    public GetEngineDto? Engine { get; set; }
-    public GetManufacturerDto? Manufacturer { get; set; }
-    public GetTransmissionDto? Transmission { get; set; }
+    public string? Manufacturer { get; set; }
+    public PostEngineDto? Engine { get; set; }
+    public PostTransmissionDto? Transmission { get; set; }
 }

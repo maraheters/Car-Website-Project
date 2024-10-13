@@ -14,6 +14,7 @@ namespace DatabaseAccess
         public DbSet<ImageInfoEntity> Images {get;set;}
         public DbSet<ManufacturerEntity> Manufacturers {get;set;}
         public DbSet<EngineEntity> Engines {get;set;}
+        public DbSet<TransmissionEntity> Transmissions {get;set;}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -22,6 +23,7 @@ namespace DatabaseAccess
             modelBuilder.ApplyConfiguration(new ImageConfiguration());
             modelBuilder.ApplyConfiguration(new ManufacturerConfiguration());
             modelBuilder.ApplyConfiguration(new EngineConfiguration());
+            modelBuilder.ApplyConfiguration(new TransmissionConfiguration());
 
             base.OnModelCreating(modelBuilder);
         }

@@ -4,6 +4,7 @@ using DatabaseAccess.Repositories;
 using Server.Models.DTOs;
 using Server.Models.DTOs.GetDtos;
 using Server.Models.DTOs.PostDtos;
+using Server.Models.DTOs.UpdateDtos;
 using Server.Services.Interfaces;
 
 namespace Server.Services;
@@ -42,19 +43,28 @@ public class CarsService : ICarsService
         return _mapper.Map<GetCarDto>(carEntity);
     }
 
-    public Task<GetCarDto> Update(Guid carId, GetCarDto getCar)
+    public async Task Update(Guid carId, PostCarDto updateCar)
     {
-        throw new NotImplementedException();
+        var carEntity = await _repository.GetById(carId);
+        if (carEntity is null)
+        {
+            throw new KeyNotFoundException();
+        }
+        
+        _mapper.Map(updateCar, carEntity);
+
+        Console.WriteLine(carEntity.Manufacturer.Name);
+        // _repository.Update(carEntity, updateCar.Manufacturer.Name, updateCar.Manufacturer.Country, updateCar.Category);
     }
 
     public async Task Delete(Guid carId)
     {
-        var car = await _repository.GetById(carId);
-        if (car == null)
+        var carEntity = await _repository.GetById(carId);
+        if (carEntity is null)
         {
             throw new KeyNotFoundException();
         }
 
-        _repository.Delete(car);
+        _repository.Delete(carEntity);
     }
 }

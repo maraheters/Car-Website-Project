@@ -19,7 +19,7 @@ function CarCard({car}: CarCardProps) {
             <div className={styles.card}>
                 <figure><img src={coverImage} alt=""/></figure>
                 <div className={styles.descriptionContainer}>
-                    <h2 className={styles.heading}>{year} {manufacturer} {model}</h2>
+                    <h2 className={styles.heading}>{year} {manufacturer.name} {model}</h2>
                     {car.engine && <h3> {formatDisplacement(car.engine.displacement)} {car.engine.type}</h3>}
                     <p>{formatPrice(price)}</p>
                     <p>{formatMileageKm(mileage)}</p>

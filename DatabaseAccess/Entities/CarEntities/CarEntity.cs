@@ -11,10 +11,12 @@ namespace DatabaseAccess.Entities.CarEntities
         public int Year {get; set;}
         public string Color {get; set;} = string.Empty;
         public string Description {get; set;} = string.Empty;
+        public string Drivetrain {get; set;} = string.Empty;
         
         public ManufacturerEntity? Manufacturer { get;set; }
         public CategoryEntity? Category {get; set;}
         public ImageInfoEntity? Images {get;set;}
         public EngineEntity? Engine {get; set;}
+        public TransmissionEntity? Transmission {get; set;}
     }
 }

@@ -28,7 +28,15 @@ namespace DatabaseAccess.Configurations.CarConfigurations
                 .HasOne(c => c.Engine)
                 .WithOne(e => e.Car)
                 .HasForeignKey<EngineEntity>(e => e.CarId)
+                .OnDelete(DeleteBehavior.Cascade);            
+            
+            builder
+                .HasOne(c => c.Transmission)
+                .WithOne(t => t.Car)
+                .HasForeignKey<TransmissionEntity>(t => t.CarId)
                 .OnDelete(DeleteBehavior.Cascade);
+            
+            
         }
     }
 }

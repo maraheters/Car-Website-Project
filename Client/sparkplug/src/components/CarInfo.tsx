@@ -15,7 +15,7 @@ const CarInfo = ({ car }: Props) => {
                 <ImageGallery imageUrls={car.images} />
                 <div>
                     <div className={styles.headings}>
-                        <h1>{car.year} {car.manufacturer} {car.model}</h1>
+                        <h1>{car.year} {car.manufacturer.name} {car.model}</h1>
                         <h2>{formatPrice(car.price)}</h2>
                         <h2>{formatMileageKm(car.mileage)}</h2>
                     </div>
@@ -23,6 +23,8 @@ const CarInfo = ({ car }: Props) => {
                     {car.category && <h3>{car.category}</h3>}
                     {car.engine && car.engine.displacement != null && <h3>{formatDisplacement(car.engine.displacement)} {car.engine.type}</h3>}
                     {car.engine && car.engine.fuelType && <h3>{car.engine.fuelType}</h3>}
+                    {car.transmission && car.transmission.gearboxType && <h3>{car.transmission.gearboxType}</h3>}
+                    {car.transmission && car.transmission.numberOfGears && <h3>{car.transmission.numberOfGears}</h3>}
                 </div>
             </div>   
         </div>

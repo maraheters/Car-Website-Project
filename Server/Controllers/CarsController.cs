@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Server.Models.DTOs;
 using Server.Models.DTOs.GetDtos;
 using Server.Models.DTOs.PostDtos;
+using Server.Models.DTOs.UpdateDtos;
 using Server.Services.Interfaces;
 
 namespace Server.Controllers;
@@ -38,11 +39,12 @@ public class CarsController : Controller
         return Created($"/api/cars/{createdEntity.Id}", createdEntity);  
     }
 
-    // [HttpPut]
-    // public async Task<IActionResult> Update([FromHeader] Guid id, [FromBody] UpdateCarDto updateCarDto)
-    // {   
-    //     
-    // }
+    [HttpPut]
+    public async Task<IActionResult> Update([FromHeader] Guid id, [FromBody] PostCarDto updateCarDto)
+    {   
+        await _carsService.Update(id, updateCarDto);
+        return Ok(id);
+    }
     
     [HttpDelete("{id:guid}")]
     public async Task<ActionResult> Delete(Guid id)

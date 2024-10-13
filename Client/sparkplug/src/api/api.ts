@@ -10,18 +10,30 @@ export type Engine = {
     modifications: string;
 }
 
+export type Manufacturer = {
+    name: string,
+    country: string
+}
+
+export type Transmission = {
+    gearboxType: string,
+    numberOfGears: number
+}
+
 export type Car = {
     id: string;
     model: string;
     price: number;
     mileage: number;
     year: number;
-    manufacturer: string;
+    manufacturer: Manufacturer;
     color: string;
     description: string;
     category: string;
+    drivetrain: string
     images: string[];
     engine: Engine;
+    transmission: Transmission
 }
 
 const fetchCars = async (): Promise<Car[]> => {
