@@ -46,9 +46,6 @@ public class CarsRepository
         var manufacturer = await manufacturerTask;
         var category = await categoryTask;
         
-        manufacturer.Cars.Add(car);
-        category.Cars.Add(car);
-        
         car.Manufacturer = manufacturer;
         car.Category = category;
         
@@ -56,9 +53,19 @@ public class CarsRepository
         await _dbContext.SaveChangesAsync();
     }
 
-    public async Task Update(CarEntity car)
+    public async Task Update(CarEntity car, string manufacturerName, string categoryName)
     {
-        throw new NotImplementedException();
+        var manufacturerTask = GetOrCreateManufacturer(manufacturerName);
+        var categoryTask = GetOrCreateCategory(categoryName);
+        
+        var manufacturer = await manufacturerTask;
+        var category = await categoryTask;
+        
+        car.Manufacturer = manufacturer;
+        car.Category = category;
+        
+        _dbContext.Cars.Update(car);
+        await _dbContext.SaveChangesAsync();
     }
 
     public async Task Delete(CarEntity car)

@@ -1,35 +1,35 @@
 .gallery {
-    // border: 2px solid black;
     max-width: 100%;
     padding: 0;
 
-    &MainImage{
+    &MainImage {
         width: 100%;
     }
 }
 
 .smallerImagesContainer {
     display: flex;
-    flex-wrap: wrap;
-    gap: 5px;
+    flex-wrap: nowrap; 
+    overflow-x: auto; 
+    gap: 5px; 
+    max-width: 100%; 
+    scrollbar-width: none;
 
     img {
-        width: 20%;
-        min-width: 150px;
+        width: 150px; 
         height: auto;
         margin: 0;
 
-        &:hover{
+        &:hover {
             cursor: pointer;
         }
     }
 }
 
 .gallerySmallerImage {
-
     &:hover {
         scale: 95%;
-        filter:opacity(60%);
+        filter: opacity(60%);
         transition: .15s ease-in;
     }
 }

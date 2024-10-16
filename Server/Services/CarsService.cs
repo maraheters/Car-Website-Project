@@ -43,7 +43,7 @@ public class CarsService : ICarsService
         return _mapper.Map<GetCarDto>(carEntity);
     }
 
-    public async Task Update(Guid carId, PostCarDto updateCar)
+    public async Task Update(Guid carId, UpdateCarDto updateCarDto)
     {
         var carEntity = await _repository.GetById(carId);
         if (carEntity is null)
@@ -51,10 +51,9 @@ public class CarsService : ICarsService
             throw new KeyNotFoundException();
         }
         
-        _mapper.Map(updateCar, carEntity);
+        _mapper.Map(updateCarDto, carEntity);
 
-        Console.WriteLine(carEntity.Manufacturer.Name);
-        // _repository.Update(carEntity, updateCar.Manufacturer.Name, updateCar.Manufacturer.Country, updateCar.Category);
+        _repository.Update(carEntity, updateCarDto.Manufacturer, updateCarDto.Category);
     }
 
     public async Task Delete(Guid carId)

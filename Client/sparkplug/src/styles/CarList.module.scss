@@ -28,6 +28,9 @@ $background-color: #e1e1e1;
   img {
     width: 100%; 
     height: auto; 
+    aspect-ratio: 5/3;
+    object-fit: cover;
+    
     border-radius: 15px 15px 0 0;
   }
 

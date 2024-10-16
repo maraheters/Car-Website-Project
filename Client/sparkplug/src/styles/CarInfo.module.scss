@@ -1,35 +1,32 @@
 $background-color-darker: #e3e3e3;
 
 .carInfo {
-    // border: 1px solid black;
-
     margin-top: 100px;
-    display: flex;
     justify-content: center;
     max-width: 100%;
+    background-color: $background-color-darker;
+    padding: 20px;
 }
 
 .galleryAndQuickInfo {
-    background-color: $background-color-darker;
-    padding: 20px;
-    border-radius: 15px;
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    grid-template-rows: auto auto;
-    min-width: 60%;
-    max-width: 1600px;
+    display: grid; 
+    grid-template-columns: 2fr 1fr; 
     gap: 40px;
-    
+
+    .gallery {
+        max-width: 100%; 
+        overflow: hidden; 
+        margin-bottom: 40px;
+    }
 
     .headings {
-
         h1 {
-            font-size: 32pt;
+            font-size: 80pt;
         }
         
         h1, h2 {
             margin: 0;
-            font-size: 24pt;
+            font-size: 20pt;
         }
 
         h2 {
@@ -44,5 +41,25 @@ $background-color-darker: #e3e3e3;
         font-size: 16pt;
         margin: 5px;
     }
+}
 
+.detailedInfo {
+    font-size: 16pt;
+    max-width: fit-content;
+    padding-left: 40px;
+
+    &Section {
+        border-top: 1px solid black;
+        
+        dl {
+            display: grid;
+            grid-gap: 4px 16px;
+            grid-template-columns: max-content;
+        }
+
+        dd {
+            font-weight: lighter;
+            grid-column-start: 2;
+        }
+    }
 }

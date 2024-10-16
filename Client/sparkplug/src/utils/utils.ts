@@ -7,7 +7,21 @@ function formatMileageKm(mileage: number): string {
 }
 
 function formatDisplacement(displacement: number): string {
-    return `${displacement.toFixed(1)}L`;
+    return displacement === 0 
+        ? "" 
+        : `${displacement.toFixed(1)}L`;
 }
 
-export { formatPrice, formatMileageKm, formatDisplacement };
+function formatPowerHp(power: number): string {
+    return `${(power*1.34102).toFixed(0)}`;
+}
+
+function formatPowerKwAndHp(power: number): string {
+    return `${power} kW (${formatPowerHp(power)} HP)`;
+}
+
+function formatTorqueNm(torque: number): string {
+    return `${torque} Nm`
+}
+
+export { formatPrice, formatMileageKm, formatDisplacement, formatPowerHp, formatPowerKwAndHp, formatTorqueNm };

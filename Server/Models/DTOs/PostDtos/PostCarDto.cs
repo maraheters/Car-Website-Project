@@ -11,8 +11,7 @@ public class PostCarDto
     public string? Drivetrain {get; set;}
     
     public string? Category { get; set; }
-    public List<string>? Images { get; set; }
-    
+    public PostImageInfoDto? Images { get; set; }
     public PostEngineDto? Engine { get; set; }
     public string? Manufacturer { get; set; }
     public PostTransmissionDto? Transmission { get; set; }

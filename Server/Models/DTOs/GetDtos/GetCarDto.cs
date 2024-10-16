@@ -12,8 +12,7 @@ public class GetCarDto
     public string? Drivetrain {get; set;}
     
     public string? Category { get; set; }
-    public List<string>? Images { get; set; }
-    
+    public GetImageInfoDto? Images { get; set; }
     public GetEngineDto? Engine { get; set; }
     public GetManufacturerDto? Manufacturer { get; set; }
     public GetTransmissionDto? Transmission { get; set; }

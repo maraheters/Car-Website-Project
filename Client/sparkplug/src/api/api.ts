@@ -15,6 +15,10 @@ export type Manufacturer = {
     country: string
 }
 
+export type Images = {
+    urls: string[]
+}
+
 export type Transmission = {
     gearboxType: string,
     numberOfGears: number
@@ -31,7 +35,7 @@ export type Car = {
     description: string;
     category: string;
     drivetrain: string
-    images: string[];
+    images: Images;
     engine: Engine;
     transmission: Transmission
 }

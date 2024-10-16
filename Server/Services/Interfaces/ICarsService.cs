@@ -11,6 +11,6 @@ public interface ICarsService
     public Task<GetCarDto> GetById(Guid carId);
     
     public Task<GetCarDto> Create(PostCarDto postCarDto);
-    public Task Update(Guid carId, PostCarDto updateCarDto);
+    public Task Update(Guid carId, UpdateCarDto updateCarDto);
     public Task Delete(Guid carId);
 }

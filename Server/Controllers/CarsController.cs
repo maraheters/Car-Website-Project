@@ -40,7 +40,7 @@ public class CarsController : Controller
     }
 
     [HttpPut]
-    public async Task<IActionResult> Update([FromHeader] Guid id, [FromBody] PostCarDto updateCarDto)
+    public async Task<IActionResult> Update([FromHeader] Guid id, [FromBody] UpdateCarDto updateCarDto)
     {   
         await _carsService.Update(id, updateCarDto);
         return Ok(id);
