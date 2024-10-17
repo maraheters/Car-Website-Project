@@ -5,15 +5,17 @@ function Header() {
     return (
         <header>
             <nav className={styles.navBar}>
-                <h1 className={styles.logo}>sparkplug</h1>
-                <div className={styles.navContainer}>
-                    <Link to="/">Главная</Link>
-                    <Link to="/news">Новости</Link>
-                </div>
-                <div className={styles.login_button_container}>
-                    <Link to="/login">
-                        <button>Войти</button>
-                    </Link>
+                <div className={styles.innerContainer}>
+                    <h1 className={styles.logo}>sparkplug</h1>
+                    <div className={styles.navContainer}>
+                        <Link to="/">Главная</Link>
+                        <Link to="/news">Новости</Link>
+                    </div>
+                    <div className={styles.login_button_container}>
+                        <Link to="/login">
+                            <button>Войти</button>
+                        </Link>
+                    </div>
                 </div>
             </nav>
         </header>

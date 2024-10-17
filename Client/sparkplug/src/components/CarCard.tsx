@@ -10,17 +10,16 @@ type CarCardProps = {
 function CarCard({car}: CarCardProps) {
     const {year, images, manufacturer, model, price, mileage} = car;
     
-    const coverImage: string = (images.urls.length == 0) 
-        ? "../../public/car-svgrepo-com.svg"
-        : images.urls[0];
+    const coverImage: string = images.urls[0];
     
     return (
         <Link to={`/cars/${car.id}`} className={styles.link}>
             <div className={styles.card}>
-                <figure><img src={coverImage} alt=""/></figure>
+                <figure><img src={coverImage} alt="../../public/car-svgrepo-com.svg"/></figure>
                 <div className={styles.descriptionContainer}>
                     <h2 className={styles.heading}>{year} {manufacturer.name} {model}</h2>
                     {car.engine && <h3> {formatDisplacement(car.engine.displacement)} {car.engine.type}</h3>}
+                    {car.transmission && <h3>, {car.transmission.gearboxType}</h3>}
                     <p>{formatPrice(price)}</p>
                     <p>{formatMileageKm(mileage)}</p>
                 </div>

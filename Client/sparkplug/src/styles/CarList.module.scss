@@ -4,11 +4,14 @@ $background-color: #e1e1e1;
 .list {
   list-style-type: none;
   display: grid; 
-  //border: 1px solid red;
+//   border: 1px solid red;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   grid-template-rows: auto auto auto;
   gap: 15px;
   justify-content: center;
+  margin: 0;
+  padding: 0;
+
 }
 
 .card {
@@ -39,6 +42,7 @@ $background-color: #e1e1e1;
     margin: 0; 
     flex: 1; 
     padding-left: 20px;
+    padding-right: 20px;
     
     &:hover {
       cursor: pointer;
@@ -52,6 +56,7 @@ $background-color: #e1e1e1;
     }
 
     h3 {
+        display: inline;
         margin-top: 0;
     }
     
