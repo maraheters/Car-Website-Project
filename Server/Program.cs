@@ -1,7 +1,10 @@
+using System.Text;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using DatabaseAccess;
 using DatabaseAccess.Repositories;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 using Server.Services;
 using Server.Services.Interfaces;
 using Server.Services.Mappers;
@@ -26,6 +29,21 @@ builder.Services.AddDbContext<CarDbContext>(
     }
 );
 
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)    
+    .AddJwtBearer(options =>    
+    {    
+        options.TokenValidationParameters = new TokenValidationParameters    
+        {    
+            ValidateIssuer = true,    
+            ValidateAudience = true,    
+            ValidateLifetime = true,    
+            ValidateIssuerSigningKey = true,    
+            ValidIssuer = configuration["Jwt:Issuer"],    
+            ValidAudience = configuration["Jwt:Issuer"],    
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Jwt:Key"]))    
+        };    
+    });    
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll",
@@ -36,6 +54,7 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 app.UseCors("AllowAll");
+app.UseAuthentication();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

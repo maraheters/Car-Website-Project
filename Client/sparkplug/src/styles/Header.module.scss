@@ -1,6 +1,6 @@
 $accent-color: #dc3545;
 //$background-color: #242424;
-$background-color: #e1e1e1;
+$background-color: #ffffff;
 
 @mixin flex-row {
     display: flex;
@@ -10,7 +10,7 @@ $background-color: #e1e1e1;
 @mixin clickable-text {
     font-weight: bold;
     color: $accent-color;
-    font-size: 12pt;
+    font-size: 1rem;
     &:hover {
         transition: .25s ease-in;
         scale: 110%;
@@ -23,14 +23,12 @@ $background-color: #e1e1e1;
     background-color: $background-color;
     position: fixed;
     top: 0;
-    left: 50%; // Center horizontally
-    transform: translateX(-50%); // Adjust to center
     align-items: center;
     justify-content: center;
 
     z-index: 1000;
-    max-width: 100%;
     width: 100%;
+    padding: 10px 0;
     
     button {
         @include clickable-text;
@@ -41,11 +39,8 @@ $background-color: #e1e1e1;
 
 .innerContainer {
     @include flex-row;
-    max-width: 1300px;
     align-items: center; 
     justify-content: space-between;
-    max-width: 1300px;
-    width: 100%;
 }
 
 .navContainer {

@@ -5,7 +5,7 @@ function Header() {
     return (
         <header>
             <nav className={styles.navBar}>
-                <div className={styles.innerContainer}>
+                <div className={`container ${styles.innerContainer}`}>
                     <h1 className={styles.logo}>sparkplug</h1>
                     <div className={styles.navContainer}>
                         <Link to="/">Главная</Link>

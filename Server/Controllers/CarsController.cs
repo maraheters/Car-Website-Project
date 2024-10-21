@@ -9,7 +9,7 @@ namespace Server.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class CarsController : Controller
+public class CarsController : ControllerBase
 {
     private readonly ICarsService _carsService;
 

@@ -1,4 +1,5 @@
-const API_URL = "http://localhost:5140/api"
+const local = true;
+const API_URL = local ? "http://localhost:5140/api" : "http://192.168.1.107:5140/api"
 
 export type Engine = {
     model: string;

@@ -13,16 +13,16 @@ const CarInfo = ({ car }: Props) => {
     const transmission = car.transmission;
 
     return (
-        <div className={styles.carInfo}>
+        <div className={`container ${styles.carInfo}`}>
             <div className={styles.galleryAndQuickInfo}>
                 <div className={styles.gallery}>
                     <ImageGallery imageUrls={car.images.urls} />
                 </div>
                 <div className={styles.quickInfo}>
                     <div className={styles.headings}>
-                        <h1>{car.year} {car.manufacturer.name} {car.model}</h1>
-                        <h2>{formatPrice(car.price)}</h2>
-                        <h2>{formatMileageKm(car.mileage)}</h2>
+                        <h1 className={styles.mainHeading}>{car.year} {car.manufacturer.name} {car.model}</h1>
+                        <h2 className={styles.price}>{formatPrice(car.price)}</h2>
+                        <h2 className={styles.mileage}>{formatMileageKm(car.mileage)}</h2>
                     </div>
                     {car.color && <h3>{car.color}</h3>}
                     {car.category && <h3>{car.category}</h3>}
@@ -31,6 +31,24 @@ const CarInfo = ({ car }: Props) => {
                     {transmission && transmission.gearboxType && <h3>{transmission.gearboxType}</h3>}
                 </div>
             </div>   
+
+            <div className={styles.summary}>
+                <div className={styles.summaryElement}>
+                    <figure></figure>
+                    <p>fsd</p>
+                    <p>fsd</p>
+                </div>
+                <div className={styles.summaryElement}>
+                    <figure></figure>
+                    <p>fsd</p>
+                    <p>fsd</p>
+                </div>
+                <div className={styles.summaryElement}>
+                    <figure></figure>
+                    <p>fsd</p>
+                    <p>fsd</p>
+                </div>
+            </div>
 
             <div className={styles.detailedInfo}>
                 {engine && 

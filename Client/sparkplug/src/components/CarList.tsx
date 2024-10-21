@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import CarCard from './CarCard';
 import { fetchCars } from '../api/api.js';
-// import { Link } from 'react-router-dom';
 import { Car } from '../api/api';
 import styles from '../styles/CarList.module.scss';
 
@@ -42,7 +41,7 @@ function CarList() {
     
 
     return (
-        <ul className={styles.list} style={{ marginTop: "200px" }}>{carList}</ul>
+        <ul className={`container ${styles.list}`} style={{ marginTop: "200px" }}>{carList}</ul>
     );
 }
 
