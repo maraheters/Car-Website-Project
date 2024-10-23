@@ -8,6 +8,10 @@ $background-color: #ffffff;
     margin: 0;
 }
 
+body {
+  min-height: 100vh;  
+}
+
 :root {
   font-family: system-ui;
   font-weight: bold;
@@ -23,8 +27,7 @@ $background-color: #ffffff;
 }
 
 .container {
-    width: 95%;
+    width: 80%;
     max-width: 1350px;
     margin: 0 auto; 
-    // border: 1px solid red;
 }
