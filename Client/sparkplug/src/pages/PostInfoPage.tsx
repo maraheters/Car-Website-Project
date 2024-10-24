@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import CarInfo from "../components/CarInfo";
 import { useEffect, useState } from "react";
-import { Car, fetchCarById } from "../api/api";
+import { fetchCarById, Car } from "../api/carApi";
 import Header from "../components/Header";
 
 function PostInfoPage() {

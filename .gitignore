@@ -8,6 +8,7 @@ packages/*
 *.user
 *.suo
 *.sln.docstates
+.env
 
 bin/
 obj/

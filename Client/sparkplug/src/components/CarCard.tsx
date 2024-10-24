@@ -1,5 +1,5 @@
 import styles from "../styles/CarList.module.scss";
-import {Car} from "../api/api.ts";
+import {Car} from "../api/carApi.ts";
 import { formatPrice, formatMileageKm, formatDisplacement } from "../utils/utils.ts";
 import { Link } from "react-router-dom";
 

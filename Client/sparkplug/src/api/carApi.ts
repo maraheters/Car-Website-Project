@@ -1,4 +1,5 @@
-const local = false;
+
+const local = true;
 const API_URL = local ? "http://localhost:5140/api" : "http://172.20.36.81:5140/api"
 
 export type Engine = {
@@ -59,4 +60,4 @@ const fetchCarById = async (id: string): Promise<Car> => {
     return data;
 }
 
-export {fetchCars, fetchCarById};
+export { fetchCars, fetchCarById};

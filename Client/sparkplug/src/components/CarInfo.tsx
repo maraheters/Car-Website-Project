@@ -1,5 +1,5 @@
 // CarInfo.tsx
-import { Car } from "../api/api";
+import { Car } from "../api/carApi.ts";
 import ImageGallery from "./ImageGallery.tsx";
 import styles from "../styles/CarInfo.module.scss"
 import { formatDisplacement, formatMileageKm, formatPowerKwAndHp, formatPrice, formatTorqueNm } from "../utils/utils.ts";
