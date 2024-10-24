@@ -18,6 +18,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(typeof(MappingProfile));
 
+builder.Services.AddHttpClient();
 builder.Services.AddControllers();
 builder.Services.AddScoped<CarsRepository>();
 builder.Services.AddScoped<ICarsService, CarsService>();
